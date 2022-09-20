@@ -8,11 +8,15 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class ImagesUseCase @Inject constructor(private val repository: ImagesRepository) {
-    suspend fun execute(rq: Images.RQ): Response<List<Images.RS>> {
+    suspend fun images(rq: Images.RQ): Response<List<Images.RS>> {
         return repository.images(rq)
     }
 
     fun fetchImageList(): Flow<PagingData<Images.RS>> {
         return repository.fetchImageList()
+    }
+
+    suspend fun image(rq: Images.RQ): Response<Images.RS> {
+        return repository.image(rq)
     }
 }

@@ -1,9 +1,7 @@
 package com.sklim.domain.model
 
-import com.sklim.domain.Constants
-
 object Images {
-    class RQ(var page: Int)
+    class RQ(var value: Int)
 
     class RS(
         var id: Int,

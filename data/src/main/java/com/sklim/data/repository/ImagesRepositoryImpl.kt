@@ -20,7 +20,11 @@ class ImagesRepositoryImpl @Inject constructor(
     private val api: ApiService
 ) : ImagesRepository {
     override suspend fun images(rq: Images.RQ): Response<List<Images.RS>> {
-        return api.images(rq.page, Constants.DEFAULT_LIMIT)
+        return api.images(rq.value, Constants.DEFAULT_LIMIT)
+    }
+
+    override suspend fun image(rq: Images.RQ): Response<Images.RS> {
+        return api.image(rq.value)
     }
 
     override fun fetchImageList(): Flow<PagingData<Images.RS>> {

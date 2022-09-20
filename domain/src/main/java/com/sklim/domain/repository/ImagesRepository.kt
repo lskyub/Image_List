@@ -7,5 +7,8 @@ import retrofit2.Response
 
 interface ImagesRepository {
     suspend fun images(rq: Images.RQ): Response<List<Images.RS>>
+
+    suspend fun image(rq: Images.RQ): Response<Images.RS>
+
     fun fetchImageList(): Flow<PagingData<Images.RS>>
 }
