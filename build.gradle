@@ -4,6 +4,7 @@ buildscript {
         hiltCoreVersion = '2.42'
         retrofitVersion = '2.9.0'
         okHttpVersion = '4.2.2'
+        kotlin_version = "1.5.10"
     }
 }
 
