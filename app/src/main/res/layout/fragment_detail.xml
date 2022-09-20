@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="model"
+            type="com.sklim.ui.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_image"
+            url="@{model.image.download_url}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="id"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_id_value" />
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="author"
+            app:layout_constraintStart_toStartOf="@+id/tv_id"
+            app:layout_constraintTop_toTopOf="@+id/tv_author_value" />
+
+        <TextView
+            android:id="@+id/tv_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="width / height"
+            app:layout_constraintStart_toStartOf="@+id/tv_id"
+            app:layout_constraintTop_toTopOf="@+id/tv_size_value" />
+
+        <TextView
+            android:id="@+id/tv_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="url"
+            app:layout_constraintStart_toStartOf="@+id/tv_id"
+            app:layout_constraintTop_toTopOf="@+id/tv_url_value" />
+
+        <TextView
+            android:id="@+id/tv_download_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="download_url"
+            app:layout_constraintStart_toStartOf="@+id/tv_id"
+            app:layout_constraintTop_toTopOf="@+id/tv_download_url_value" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/title_barrier"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="tv_id,tv_author,tv_size,tv_url,tv_download_url" />
+
+        <TextView
+            android:id="@+id/tv_id_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:text="@{String.valueOf(model.image.id)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/title_barrier"
+            app:layout_constraintTop_toBottomOf="@+id/iv_image" />
+
+        <TextView
+            android:id="@+id/tv_author_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{model.image.author}"
+            app:layout_constraintEnd_toEndOf="@+id/tv_id_value"
+            app:layout_constraintStart_toStartOf="@+id/tv_id_value"
+            app:layout_constraintTop_toBottomOf="@+id/tv_id_value" />
+
+        <TextView
+            android:id="@+id/tv_size_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text='@{String.valueOf(model.image.width) + " / " + String.valueOf(model.image.width)}'
+            app:layout_constraintEnd_toEndOf="@+id/tv_id_value"
+            app:layout_constraintStart_toStartOf="@+id/tv_id_value"
+            app:layout_constraintTop_toBottomOf="@+id/tv_author_value" />
+
+        <TextView
+            android:id="@+id/tv_url_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{model.image.url}"
+            app:layout_constraintEnd_toEndOf="@+id/tv_id_value"
+            app:layout_constraintStart_toStartOf="@+id/tv_id_value"
+            app:layout_constraintTop_toBottomOf="@+id/tv_size_value" />
+
+        <TextView
+            android:id="@+id/tv_download_url_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{model.image.download_url}"
+            app:layout_constraintEnd_toEndOf="@+id/tv_id_value"
+            app:layout_constraintStart_toStartOf="@+id/tv_id_value"
+            app:layout_constraintTop_toBottomOf="@+id/tv_url_value" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
