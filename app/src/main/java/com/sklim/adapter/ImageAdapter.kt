@@ -1,6 +1,7 @@
 package com.sklim.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -12,16 +13,23 @@ import com.sklim.R
 import com.sklim.BR
 import com.sklim.domain.model.Images
 
-class ImageAdapter : PagingDataAdapter<Images.RS, ImageAdapter.ViewHolder>(
-    object : DiffUtil.ItemCallback<Images.RS>() {
-        override fun areItemsTheSame(oldItem: Images.RS, newItem: Images.RS): Boolean {
-            return oldItem.id == newItem.id && oldItem.author == newItem.author
-        }
+interface OnItemClickListener {
+    fun onClick(v: View?, position: Int)
+}
 
-        override fun areContentsTheSame(oldItem: Images.RS, newItem: Images.RS): Boolean {
-            return oldItem.id == newItem.id && oldItem.toString() == newItem.toString()
-        }
-    }) {
+class ImageAdapter :
+    PagingDataAdapter<Images.RS, ImageAdapter.ViewHolder>(
+        object : DiffUtil.ItemCallback<Images.RS>() {
+            override fun areItemsTheSame(oldItem: Images.RS, newItem: Images.RS): Boolean {
+                return oldItem.id == newItem.id && oldItem.author == newItem.author
+            }
+
+            override fun areContentsTheSame(oldItem: Images.RS, newItem: Images.RS): Boolean {
+                return oldItem.id == newItem.id && oldItem.toString() == newItem.toString()
+            }
+        }) {
+
+    lateinit var listener: OnItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(R.layout.item_image, parent)
@@ -30,6 +38,15 @@ class ImageAdapter : PagingDataAdapter<Images.RS, ImageAdapter.ViewHolder>(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.also {
             holder.binding.setVariable(BR.item, it)
+            holder.binding.setVariable(BR.listener, object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    if (::listener.isInitialized) {
+                        getItem(holder.bindingAdapterPosition)?.id?.also {
+                            listener.onClick(v, it)
+                        }
+                    }
+                }
+            })
         }
     }
 

@@ -7,11 +7,16 @@
         <variable
             name="item"
             type="com.sklim.domain.model.Images.RS" />
+
+        <variable
+            name="listener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{(v)->listener.onClick(v)}">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_image"
