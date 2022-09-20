@@ -36,6 +36,7 @@ dependencies {
 
     //Hilt
     implementation "com.google.dagger:hilt-android:$hiltCoreVersion"
+    implementation 'androidx.paging:paging-common-ktx:3.1.1'
     kapt "com.google.dagger:hilt-android-compiler:$hiltCoreVersion"
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
     kapt "com.google.dagger:dagger-compiler:$hiltCoreVersion"
