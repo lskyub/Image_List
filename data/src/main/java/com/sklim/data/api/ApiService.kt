@@ -10,5 +10,5 @@ interface ApiService {
     suspend fun images(
         @Query("page") page: Int,
         @Query("limit") limit: Int,
-    ): Response<Array<Images.RS>>
+    ): Response<List<Images.RS>>
 }
