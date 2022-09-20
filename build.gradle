@@ -5,6 +5,7 @@ buildscript {
         retrofitVersion = '2.9.0'
         okHttpVersion = '4.2.2'
         kotlin_version = "1.5.10"
+        paging_version = "3.1.1"
     }
 }
 
