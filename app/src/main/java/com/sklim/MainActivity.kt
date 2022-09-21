@@ -36,26 +36,15 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
     }
 
-    val listClickListener = object : OnItemClickListener {
-        override fun onClick(v: View?, position: Int) {
-            navController.navigateSafe(
-                R.id.action_navigation_list_to_navigation_detail,
-                bundleOf("id" to position)
-            )
-        }
-    }
-
-    // Extension 메소드를 정의하여 네비게이션 화면이동시 navigate() 대신 아래 메소드를 사용함
-    fun NavController.navigateSafe(
+    fun navigateSafe(
         @IdRes resId: Int,
         args: Bundle? = null,
         navOptions: NavOptions? = null,
         navExtras: Navigator.Extras? = null
     ) {
-        val action = currentDestination?.getAction(resId) ?: graph.getAction(resId)
-        // 현재 fragment의 id와 이동할 fragment의 id가 다르면 화면이동 실행 (같다는 건, 이미 이동이 된 후이기 때문)
-        if (action != null && currentDestination?.id != action.destinationId) {
-            navigate(resId, args, navOptions, navExtras)
+        val action = navController.currentDestination?.getAction(resId) ?: navController.graph.getAction(resId)
+        if (action != null && navController.currentDestination?.id != action.destinationId) {
+            navController.navigate(resId, args, navOptions, navExtras)
         }
     }
 }

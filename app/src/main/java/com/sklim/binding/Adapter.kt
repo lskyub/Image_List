@@ -21,11 +21,10 @@ object Adapter {
     fun AppCompatImageView.setUrl(path: String?) {
         path?.also {
             Glide.with(context).load(path)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
                 .override(width, height)
                 .centerCrop()
-                .transition(DrawableTransitionOptions.withCrossFade()).into(this)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(this)
         }
     }
 }

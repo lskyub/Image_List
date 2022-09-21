@@ -19,7 +19,7 @@ abstract class BindingFragment<B : ViewDataBinding, M : ViewModel> constructor(@
 
     abstract val viewModel: M
 
-    private lateinit var _binding: B
+    lateinit var binding: B
 
     /**
      * MainActivity에서 사용하는 ViewModel 객체로 데이터 공유 또는 공통 처리를 위해 사용
@@ -40,15 +40,15 @@ abstract class BindingFragment<B : ViewDataBinding, M : ViewModel> constructor(@
         savedInstanceState: Bundle?
     ): View {
         //binding 객체 생성 상속받은 클래스에서 전달 받은 id값을 통해 layout를 생성
-        _binding = DataBindingUtil.inflate(inflater, resourceId, container, false)
+        binding = DataBindingUtil.inflate(inflater, resourceId, container, false)
         //binding 객체의 생명주기를 activity에서 관리 하도록 함
-        _binding.lifecycleOwner = activity
+        binding.lifecycleOwner = activity
 
-        return _binding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding.setVariable(BR.model, viewModel)
+        binding.setVariable(BR.model, viewModel)
     }
 }
